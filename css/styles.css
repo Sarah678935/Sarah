@@ -10,40 +10,47 @@
 
 /* General Styles */
 body {
-    font-family: 'Montserrat', sans-serif;    color: var(--text-dark-gray);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark-gray);
     background-color: var(--background-gray);
     margin: 0;
     padding: 0;
-    font-size: var(--base-font-size); /* Base font size */
+    font-size: var(--base-font-size);
     line-height: 1.6;
 }
-
 /* Navigation Styles */
 nav {
     background-color: var(--primary-blue);
-    padding: 1rem;
-    position: relative;
-    z-index: 1000;
+    padding: 1rem 0; /* Adjust padding for better spacing */
+    position: fixed; /* Make the navbar stick to the top */
+    top: 0; /* Position it at the top of the page */
+    left: 0; /* Align to the left */
+    width: 100%; /* Full width */
+    z-index: 1000; /* Ensure it's above other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for separation */
 }
 
 nav .container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+    justify-content: space-between; /* Space between logo and nav links */
+    align-items: center; /* Ensures all items in the nav are centered vertically */
+    max-width: 1200px; /* Optional: Limit width to create spacing on larger screens */
+    margin: 0 auto; /* Center the content */
+    padding: 0 2rem; /* Adds some padding to the sides */
 }
 
 .logo-link {
     display: flex;
-    align-items:end;
+    align-items: center;
+    margin-right: auto; /* Pushes logo to the left */
 }
 
 .logo {
-    height: 10rem; /* Responsive height */
+    height: 7rem; /* Adjusted responsive height */
     width: auto;
     position: relative;
-    top: -2rem;
-    left: -2rem;
+    top: 0;
+    left: -8rem;
     transition: transform 0.3s ease;
 }
 
@@ -54,34 +61,57 @@ nav .container {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem; /* Increased gap for more space between items */
     margin: 0;
     padding: 0;
+    align-items: center; /* Aligns nav items vertically */
 }
 
 .nav-links li {
-    display: inline-block;
+    display: flex; /* Using flexbox for better control over alignment */
 }
 
 .nav-links li a {
     color: white;
     text-decoration: none;
     font-size: 1.5rem;
-    position: relative;
-    top: -2rem;
     display: flex;
-    font-family:'Montserrat' ;
+    font-family: 'Montserrat';
     align-items: center;
     justify-content: center;
+    padding: 0.5rem 1rem; /* Adds padding for more clickable area */
     font-weight: bolder;
     transition: color 0.3s;
 }
 
-.nav-icon {
-    font-size: 1.5rem;
-    color: white;
-    transition: color 0.3s;
+/* Hamburger Menu Button Styles for Small Screens */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem; /* Adjusted for mobile view */
+        background-color: var(--primary-blue);
+        position: absolute;
+        top: 4rem; /* Adjusted to ensure it's below the logo and burger menu */
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    #checkbox:checked ~ .nav-links {
+        display: flex;
+    }
+
+    .toggle {
+        display: flex;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
 }
+
 
 .nav-links li a:hover,
 .nav-links li a:hover .nav-icon {
@@ -94,8 +124,8 @@ nav .container {
 }
 
 .toggle {
-    width: 2.5rem; /* Relative width */
-    height: 2.5rem; /* Relative height */
+    width: 2.5rem;
+    height: 2.5rem;
     cursor: pointer;
     display: none;
     flex-direction: column;
@@ -113,7 +143,7 @@ nav .container {
     transition-duration: 0.3s;
 }
 
-/* Media Query for Smaller Screens */
+/* Responsive Navigation for Smaller Screens */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -122,7 +152,7 @@ nav .container {
         gap: 1rem;
         background-color: var(--primary-blue);
         position: absolute;
-        top: 3.75rem; /* Adjusted for logo size */
+        top: 3.75rem;
         left: 0;
         right: 0;
         width: 100%;
@@ -136,7 +166,7 @@ nav .container {
     .toggle {
         display: flex;
         position: absolute;
-        top: 1rem;
+        top: 0;
         right: 1rem;
     }
 }
@@ -163,7 +193,7 @@ nav .container {
 .home-text {
     flex: 1;
     font-weight: bolder;
-    font-size: clamp(1.5rem, 2.3vw, 2.5rem); /* Responsive font size */
+    font-size: clamp(1.5rem, 2.3vw, 2.5rem);
     text-align: left;
     margin-right: 2rem;
 }
@@ -176,7 +206,7 @@ nav .container {
 
 .illustration {
     width: 100%;
-    max-width: 37.5rem; /* 600px */
+    max-width: 37.5rem;
     height: auto;
     transition: transform 0.3s ease;
 }
@@ -214,7 +244,7 @@ nav .container {
     .home-text {
         margin-bottom: 2rem;
         margin-right: 0;
-        font-size: 1.5rem; /* Smaller font size for mobile */
+        font-size: 1.3rem;
     }
 
     .home-illustration {
@@ -235,14 +265,14 @@ nav .container {
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-    max-width: 56.25rem; /* 900px */
+    max-width: 56.25rem;
     margin: 0 auto;
     animation: slideIn 1.5s ease-in-out;
     text-align: left;
 }
 
 .about-image {
-    width: 21.875rem; /* 350px */
+    width: 21.875rem;
     height: 21.875rem;
     border-radius: 50%;
     object-fit: contain;
@@ -257,7 +287,7 @@ nav .container {
 }
 
 .about-text {
-    max-width: 31.25rem; /* 500px */
+    max-width: 31.25rem;
 }
 
 .about-text h2 {
@@ -300,7 +330,7 @@ nav .container {
     }
 }
 
-/* Other Sections and Their Responsiveness */
+/* Projects Section Styles */
 .projects-section {
     padding: 2.5rem 0;
     text-align: center;
@@ -314,23 +344,23 @@ nav .container {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr)); /* 200px */
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
     gap: 1.5rem;
-    max-width: 50rem; /* 800px */
+    max-width: 50rem;
     margin: 0 auto;
 }
 
 .project-card {
     background-color: white;
     padding: 1.5rem;
-    border-radius: 0.625rem; /* 10px */
+    border-radius: 0.625rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
 }
 
 .project-card:hover {
-    transform: translateY(-0.3125rem); /* 5px */
+    transform: translateY(-0.3125rem);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
@@ -345,6 +375,7 @@ nav .container {
     color: var(--text-dark-gray);
 }
 
+/* Responsive Design for Project Section */
 @media (max-width: 768px) {
     .project-grid {
         grid-template-columns: repeat(1, 1fr);
@@ -373,7 +404,7 @@ nav .container {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem;
-    max-width: 56.25rem; /* 900px */
+    max-width: 56.25rem;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -398,13 +429,7 @@ nav .container {
     box-shadow: 0 0.5rem 1.5625rem rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width: 768px) {
-    .skills-wrapper {
-        gap: 1rem;
-    }
-}
-
-/* Contact Section */
+/* Contact Section Styles */
 .contact-section {
     background: linear-gradient(135deg, var(--primary-blue), var(--accent-silverBabyBlue));
     padding: 2.5rem 0;
@@ -423,35 +448,38 @@ nav .container {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
-    max-width: 56.25rem; /* 900px */
+    max-width: 56.25rem;
     margin: 0 auto;
 }
 
 .contact-form {
     background-color: white;
-    border-radius: 0.625rem; /* 10px */
+    border-radius: 0.625rem;
     padding: 2rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    max-width: 25rem; /* 400px */
+    max-width: 25rem;
     width: 100%;
+    margin: 0 auto;
 }
 
 .input-group {
     position: relative;
     margin-bottom: 1.5rem;
+    width: 100%;
 }
 
 .input-group input,
 .input-group textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 0.125rem solid var(--primary-blue); /* 2px */
-    border-radius: 0.3125rem; /* 5px */
+    border: 0.125rem solid var(--primary-blue);
+    border-radius: 0.3125rem;
     outline: none;
     font-size: 1rem;
     color: var(--text-dark-gray);
     background: transparent;
     transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 .input-group input:focus,
@@ -461,8 +489,8 @@ nav .container {
 
 .input-group label {
     position: absolute;
-    left: 0.625rem; /* 10px */
-    top: 1.25rem; /* 20px */
+    left: 0.625rem;
+    top: 1.25rem;
     font-size: 0.9rem;
     color: var(--primary-blue);
     pointer-events: none;
@@ -473,8 +501,8 @@ nav .container {
 .input-group textarea:focus + label,
 .input-group input:not(:placeholder-shown) + label,
 .input-group textarea:not(:placeholder-shown) + label {
-    top: -1.25rem; /* -20px */
-    left: 0.3125rem; /* 5px */
+    top: -1.25rem;
+    left: 0.3125rem;
     font-size: 0.75rem;
     color: var(--accent-silverBabyBlue);
 }
@@ -486,7 +514,7 @@ nav .container {
     color: white;
     background-color: var(--accent-yellow);
     border: none;
-    border-radius: 0.3125rem; /* 5px */
+    border-radius: 0.3125rem;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
@@ -506,7 +534,7 @@ nav .container {
 
 .social-icon {
     color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
     transition: color 0.3s ease;
 }
 
@@ -514,7 +542,7 @@ nav .container {
     color: var(--accent-yellow);
 }
 
-/* Services Section */
+/* Services Section Styles */
 .services-section {
     background-color: var(--background-gray);
     padding: 2.5rem 0;
@@ -532,7 +560,7 @@ nav .container {
     font-size: 1.2rem;
     color: var(--text-dark-gray);
     margin-bottom: 2.5rem;
-    max-width: 43.75rem; /* 700px */
+    max-width: 43.75rem;
     margin: 0 auto 2.5rem;
 }
 
@@ -542,15 +570,15 @@ nav .container {
     gap: 2rem;
     justify-content: center;
     align-items: center;
-    max-width: 62.5rem; /* 1000px */
+    max-width: 62.5rem;
     margin: 0 auto;
 }
 
 .service-illustration {
     width: 100%;
-    max-width: 18.75rem; /* 300px */
+    max-width: 18.75rem;
     height: auto;
-    border-radius: 0.9375rem; /* 15px */
+    border-radius: 0.9375rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -562,7 +590,7 @@ nav .container {
 
 .service-card {
     background-color: white;
-    border-radius: 0.625rem; /* 10px */
+    border-radius: 0.625rem;
     padding: 2rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -570,16 +598,16 @@ nav .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1 1 15.625rem; /* 250px */
+    flex: 1 1 15.625rem;
 }
 
 .service-card:hover {
-    transform: translateY(-0.625rem); /* 10px */
+    transform: translateY(-0.625rem);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
 .service-icon {
-    width: 5rem; /* 80px */
+    width: 5rem;
     height: auto;
     margin-bottom: 1rem;
     transition: transform 0.3s ease;
@@ -589,6 +617,7 @@ nav .container {
     transform: rotate(10deg);
 }
 
+/* Responsive Design for Services Section */
 @media (max-width: 768px) {
     .services-section h2 {
         font-size: 1.5rem;
@@ -605,11 +634,7 @@ nav .container {
     }
 
     .service-icon {
-        width: 3.75rem; /* 60px */
-    }
-
-    .service-image-container {
-        margin: 1rem 0;
+        width: 3.75rem;
     }
 
     .service-illustration {
@@ -617,7 +642,7 @@ nav .container {
     }
 }
 
-/* Large Screens - Desktops */
+/* Responsive Design for Large Screens */
 @media (min-width: 1024px) {
     .home-text {
         font-size: 2.3rem;
@@ -625,7 +650,7 @@ nav .container {
     }
 
     .home-illustration {
-        max-width: 43.75rem; /* 700px */
+        max-width: 43.75rem;
     }
 
     .nav-links li a {
@@ -633,7 +658,7 @@ nav .container {
     }
 }
 
-/* Medium Screens - Tablets */
+/* Responsive Design for Medium Screens */
 @media (min-width: 769px) and (max-width: 1023px) {
     .home-text {
         font-size: 1.8rem;
@@ -641,7 +666,7 @@ nav .container {
     }
 
     .home-illustration {
-        max-width: 31.25rem; /* 500px */
+        max-width: 31.25rem;
     }
 
     .project-grid {
@@ -653,12 +678,12 @@ nav .container {
     }
 }
 
-/* Small Screens - Mobile */
+/* Responsive Design for Small Screens */
 @media (max-width: 768px) {
     .home-container {
         flex-direction: column;
         text-align: center;
-        padding: 0;
+        padding: 2rem;
     }
 
     .home-text {
@@ -699,7 +724,7 @@ nav .container {
     .toggle {
         display: flex;
         position: absolute;
-        top: 0rem;
+        top: 0;
         right: 1rem;
     }
 
@@ -722,7 +747,7 @@ nav .container {
     }
 
     .service-icon {
-        width: 3.75rem; /* 60px */
+        width: 3.75rem;
     }
 
     .service-illustration {

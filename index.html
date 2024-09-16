@@ -72,7 +72,7 @@
   <nav>
     <div class="container">
       <a href="#home" class="logo-link">
-        <img src="assets/Sarah__7_-removebg-preview.png" alt="logo" class="logo">
+        <img src="assets/Sarah__7_-removebg-preview.svg" alt="logo" class="logo">
       </a>
       <!-- Hamburger Menu Checkbox and Label -->
       <input id="checkbox" type="checkbox">
@@ -98,7 +98,7 @@
   <div class="container home-container">
     <!-- Text Content -->
     <div class="home-text">
-      <h1>Hello👋, I'm Sarah.</h1>
+      <h1>Hello👋, I'm Sarah Salam.</h1>
       <p>Turning ideas into reality with code, design, and a touch of creativity.</p>
       <a href="#projects" class="cta-button">See My Projects</a>
     </div>
@@ -133,20 +133,41 @@
     <h2>Projects</h2>
     <!-- Compact grid of projects -->
     <div class="project-grid">
-      <!-- Project Card 1 -->
+
+      <!-- Project Card 3 -->
       <div class="project-card">
-        <h3>SmartHealth App</h3>
-        <p>A mobile app that leverages AI for health recommendations.</p>
+        <h3>Diabetes Management App</h3>
+        <p>An application to help users monitor and manage diabetes through daily tracking and data analysis.</p>
       </div>
-      <!-- Project Card 2 -->
+      <!-- Project Card 4 -->
       <div class="project-card">
-        <h3>DataViz Dashboard</h3>
-        <p>Interactive dashboard for real-time data visualization.</p>
+        <h3>Smart Wheelchair</h3>
+        <p>A smart wheelchair designed with IoT integration for remote monitoring and autonomous navigation.</p>
       </div>
-      <!-- Add more project cards as needed -->
+      <!-- Project Card 5 -->
+      <div class="project-card">
+        <h3>E-commerce Website for Plants</h3>
+        <p>An online platform for buying and selling a variety of plants with integrated payment and shipping options.</p>
+      </div>
+      <!-- Project Card 6 -->
+      <div class="project-card">
+        <h3>Store and Inventory Management Application</h3>
+        <p>A software solution for managing inventory, sales, and stock levels for small and medium-sized businesses.</p>
+      </div>
+      <!-- Project Card 7 -->
+      <div class="project-card">
+        <h3>Analyzing Factors Affecting Diabetes</h3>
+        <p>A data science project focused on identifying and analyzing various factors that influence diabetes through data analytics.</p>
+      </div>
+        <!-- Project Card 8 -->
+        <div class="project-card">
+          <h3>Designing a Database for E-commerce Application</h3>
+          <p>A comprehensive database design for an e-commerce platform to handle products, users, orders, and transactions efficiently.</p>
+        </div>
     </div>
   </div>
 </section>
+
 
 
 
@@ -159,6 +180,7 @@
         <div class="skill-bubble">WordPress</div>
         <div class="skill-bubble">HTML</div>
         <div class="skill-bubble">CSS</div>
+        <div class="skill-bubble">C++</div>
         <div class="skill-bubble">Python</div>
         <div class="skill-bubble">PHP</div>
         <div class="skill-bubble">C#</div>
@@ -218,7 +240,7 @@
       <!-- Contact Form -->
    <!-- Contact Form -->
    <form id="contact-form" class="contact-form" onsubmit="sendEmail(event);">
-    <div class="input-group">
+        <div class="input-group">
       <input type="text" id="name" name="name" required>
       <label for="name"><i class="fas fa-user"></i> Your Name</label>
     </div>
@@ -248,14 +270,34 @@
 
 
   <!-- JavaScript -->
-  <script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-(function () {
-  emailjs.init('ZIWDZ0I2VaaKWRqWD'); // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
-})();
-</script>
+  <script type="text/javascript">
+    async function sendEmail(event) {
+      event.preventDefault(); // Prevent default form submission behavior
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      try {
+        const response = await fetch('/api/sendEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message })
+        });
+
+        if (response.ok) {
+          alert('Message sent successfully!');
+        } else {
+          alert('Failed to send message. Please try again later.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while sending the message.');
+      }
+    }
+  </script>
 
 <script src="js/main.js"></script>
 
